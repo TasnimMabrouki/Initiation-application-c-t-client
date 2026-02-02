@@ -1,20 +1,24 @@
-import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
-import { AppRoutingModule } from './app-routing-module';
-import { App } from './app';
+import { AppComponent } from './app.component';
+import { HeaderComponent } from './core/header/header.component';
+import { FooterComponent } from './core/footer/footer.component';
+import { ListSuggestionComponent } from './core/list-suggestion/list-suggestion.component';
 
 @NgModule({
   declarations: [
-    App
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    ListSuggestionComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    FormsModule // Important pour ngModel
   ],
-  providers: [
-    provideBrowserGlobalErrorListeners()
-  ],
-  bootstrap: [App]
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
