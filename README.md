@@ -1,48 +1,18 @@
-# 🚀 Système de Suggestions - Projet Angular
+# Workshop 1 : Standalone vs Architecture Modulaire
 
-![Angular](https://img.shields.io/badge/Angular-17+-DD0031?style=for-the-badge&logo=angular&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
+## 🎯 Objectif
+Comprendre et comparer les deux architectures Angular :
+1. **Standalone API** (Nouveau - Angular 17+)
+2. **Architecture Modulaire** (Traditionnel)
 
-Application web moderne de gestion de suggestions développée avec Angular pour le cours d'Initiation aux Applications Client.
+## 📁 Deux Projets Créés
 
-## ✨ Fonctionnalités
+### **Projet 1 : Architecture Standalone**
 
-### 🎯 Workshop 1 - Bases d'Angular
-- **Configuration de l'environnement** Angular CLI
-- **Création de composants** : Header, Footer
-- **Initialisation** d'un projet Angular moderne
+ng new standalone-project --standalone
 
-### 🔧 Workshop 2 - Manipulation des Composants
-- **Composants Angular** : Header, Footer, ListSuggestion
-- **Data Binding** complet :
-  - Interpolation `{{ }}`
-  - Property binding `[ ]`
-  - Event binding `( )`
-  - Two-way binding `[(ngModel)]`
-- **Directives** :
-  - `*ngFor` pour les listes
-  - `*ngIf` pour l'affichage conditionnel
-  - `[ngClass]` pour les classes dynamiques
-- **Interface TypeScript** : Modèle `Suggestion`
-- **Fonctionnalités interactives** :
-  - Filtrage des suggestions par catégorie
-  - Recherche en temps réel
-  - Boutons Like et Favoris
-  - Gestion des états (acceptée/refusée/en attente)
+### **Projet 2 : Architecture Modulaire**
 
-### 🗺️ Workshop 3 - Routage et Lazy Loading
-- **Routage Angular** avec `RouterModule`
-- **Lazy Loading** des modules :
-  - Module `Suggestions` chargé uniquement sur `/suggestions`
-  - Module `Users` chargé uniquement sur `/users`
-- **Navigation SPA** :
-  - Page d'accueil (`/home`)
-  - Liste des suggestions (`/suggestions`)
-  - Détails d'une suggestion (`/suggestions/:id`)
-  - Page 404 (`/**`)
-- **Services de routage** :
-  - `ActivatedRoute` pour les paramètres
-  - `Router` pour la navigation programmatique
-
+ng new modular-project
+ou ng new modular-project --standalone false
 
