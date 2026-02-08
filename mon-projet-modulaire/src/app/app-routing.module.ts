@@ -1,0 +1,35 @@
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './core/home/home.component';
+import { NotFoundComponent } from './core/notfound/notfound.component';
+import { ListSuggestionComponent } from './core/list-suggestion/list-suggestion.component';
+
+const routes: Routes = [
+  { path: '', redirectTo: '/home', pathMatch: 'full' }, 
+  { path: 'home', component: HomeComponent },
+  //{ path: 'listSuggestion', component: ListSuggestionComponent },
+  //{ path: 'suggestions', loadChildren: () => import('./features/suggestions/suggestions.module').then(m => m.SuggestionsModule) },
+  //{ path: 'users', loadChildren: () => import('./features/users/users.module').then(m => m.UsersModule) },
+  //{ path: '**', component: NotFoundComponent }  // Route 404
+  // Routes avec lazy loading
+  { path: 'listSuggestion', component: ListSuggestionComponent },
+  { 
+    path: 'suggestions', 
+    loadChildren: () => import('./features/suggestions/suggestions.module')
+      .then(m => m.SuggestionsModule) 
+  },
+  { 
+    path: 'users', 
+    loadChildren: () => import('./features/users/users.module')
+      .then(m => m.UsersModule) 
+  },
+  
+  // Route 404 (doit être en dernier)
+  { path: '**', component: NotFoundComponent }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }

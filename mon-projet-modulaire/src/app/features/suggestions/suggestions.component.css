@@ -1,0 +1,147 @@
+/* Styles généraux */
+.card {
+  border-left: 4px solid #0d6efd;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border-radius: 8px;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Badges */
+.badge {
+  font-size: 0.8em;
+  font-weight: 500;
+  padding: 0.4em 0.8em;
+}
+
+.bg-warning {
+  color: #000;
+}
+
+/* Boutons */
+.btn-sm {
+  padding: 0.35rem 0.65rem;
+  font-size: 0.875rem;
+  border-radius: 4px;
+}
+
+.btn-outline-primary {
+  border-color: #0d6efd;
+  color: #0d6efd;
+}
+
+.btn-outline-primary:hover {
+  background-color: #0d6efd;
+  color: white;
+}
+
+.btn-outline-success {
+  border-color: #198754;
+  color: #198754;
+}
+
+.btn-outline-success:hover {
+  background-color: #198754;
+  color: white;
+}
+
+.btn-outline-info {
+  border-color: #0dcaf0;
+  color: #0dcaf0;
+}
+
+.btn-outline-info:hover {
+  background-color: #0dcaf0;
+  color: white;
+}
+
+/* Barre de recherche */
+.input-group-text {
+  background-color: #f8f9fa;
+  border-color: #dee2e6;
+  color: #6c757d;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #86b7fe;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Liste des favoris */
+.list-group-item {
+  border-left: 3px solid #ffc107;
+  margin-bottom: 0.5rem;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.list-group-item:hover {
+  background-color: #f8f9fa;
+  border-left-color: #fd7e14;
+}
+
+/* Alertes */
+.alert-info {
+  background-color: #cff4fc;
+  border-color: #b6effb;
+  color: #055160;
+  border-radius: 6px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .card-body {
+    padding: 1rem;
+  }
+  
+  .btn-sm {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  
+  .d-flex.justify-content-between {
+    flex-direction: column;
+  }
+}
+
+/* Animation pour les likes */
+@keyframes likeAnimation {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.liked {
+  animation: likeAnimation 0.3s ease-in-out;
+}
+
+/* Icônes */
+.bi {
+  vertical-align: middle;
+}
+
+.bi-hand-thumbs-up {
+  margin-right: 3px;
+}
+
+.bi-star-fill {
+  color: #ffc107;
+}
+
+/* En-tête */
+h3 {
+  color: #2c3e50;
+  font-weight: 600;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+h4 {
+  color: #34495e;
+  font-weight: 500;
+}

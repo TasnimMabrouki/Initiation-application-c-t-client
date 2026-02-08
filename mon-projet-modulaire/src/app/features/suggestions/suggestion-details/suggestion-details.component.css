@@ -1,0 +1,182 @@
+/* Styles généraux */
+.card {
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* En-tête avec gradient */
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #0d6efd 0%, #0dcaf0 100%);
+}
+
+/* Badges */
+.badge {
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  padding: 0.5em 1em;
+}
+
+/* Icônes */
+.display-4 {
+  font-size: 3.5rem;
+}
+
+/* Alertes personnalisées */
+.alert {
+  border-radius: 10px;
+  border: none;
+  padding: 1.5rem;
+}
+
+.alert-success {
+  background-color: rgba(25, 135, 84, 0.1);
+  color: #0f5132;
+}
+
+.alert-danger {
+  background-color: rgba(220, 53, 69, 0.1);
+  color: #842029;
+}
+
+.alert-warning {
+  background-color: rgba(255, 193, 7, 0.1);
+  color: #664d03;
+}
+
+/* Boutons */
+.btn {
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border-width: 2px;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
+  border: none;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #0b5ed7 0%, #0a58ca 100%);
+}
+
+.btn-outline-success {
+  color: #198754;
+  border-color: #198754;
+}
+
+.btn-outline-success:hover {
+  background: linear-gradient(135deg, #198754 0%, #157347 100%);
+  color: white;
+  border-color: transparent;
+}
+
+.btn-outline-secondary {
+  color: #6c757d;
+  border-color: #6c757d;
+}
+
+.btn-outline-secondary:hover {
+  background: linear-gradient(135deg, #6c757d 0%, #5c636a 100%);
+  color: white;
+  border-color: transparent;
+}
+
+/* Animation de chargement */
+.spinner-border {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Cartes d'information */
+.shadow-sm {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+}
+
+.shadow-lg {
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .card-header .row {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .card-header .col-md-8,
+  .card-header .col-md-4 {
+    width: 100%;
+  }
+  
+  .card-body {
+    padding: 1.5rem !important;
+  }
+  
+  .btn {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  
+  .display-4 {
+    font-size: 2.5rem;
+  }
+}
+
+/* Animation pour les interactions */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.btn:active {
+  animation: pulse 0.3s ease;
+}
+
+/* Styles pour le texte */
+.text-primary {
+  color: #0d6efd !important;
+}
+
+.fs-5 {
+  font-size: 1.25rem !important;
+  line-height: 1.6;
+}
+
+/* Background léger pour la description */
+.bg-light {
+  background-color: #f8f9fa !important;
+}
+
+.rounded-3 {
+  border-radius: 0.75rem !important;
+}
+
+/* Espacement */
+.mb-5 {
+  margin-bottom: 3rem !important;
+}
+
+.py-4 {
+  padding-top: 1.5rem !important;
+  padding-bottom: 1.5rem !important;
+}
+
+.p-5 {
+  padding: 3rem !important;
+}

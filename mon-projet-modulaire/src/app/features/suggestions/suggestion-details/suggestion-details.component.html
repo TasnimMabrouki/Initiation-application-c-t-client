@@ -1,0 +1,178 @@
+<div class="container py-4" *ngIf="suggestion; else loading">
+  <div class="row justify-content-center">
+    <div class="col-lg-10 col-xl-8">
+      <!-- En-tête avec bouton retour -->
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <button class="btn btn-outline-secondary" (click)="goBack()">
+          <i class="bi bi-arrow-left me-2"></i>
+          Retour aux suggestions
+        </button>
+        <span class="badge bg-primary fs-6">
+          ID: #{{ suggestion.id }}
+        </span>
+      </div>
+
+      <!-- Carte principale -->
+      <div class="card shadow-lg border-0">
+        <!-- En-tête de la carte -->
+        <div class="card-header bg-gradient-primary text-white py-4">
+          <div class="row align-items-center">
+            <div class="col-md-8">
+              <h2 class="card-title mb-2">
+                <i class="bi bi-lightbulb me-3"></i>
+                {{ suggestion.title }}
+              </h2>
+              <div class="d-flex flex-wrap gap-2 mt-3">
+                <span class="badge bg-light text-dark fs-6 py-2">
+                  <i class="bi bi-tag me-1"></i>
+                  {{ suggestion.category }}
+                </span>
+                <span class="badge fs-6 py-2" 
+                      [ngClass]="{
+                        'bg-success': suggestion.status === 'acceptée',
+                        'bg-danger': suggestion.status === 'refusée',
+                        'bg-warning text-dark': suggestion.status === 'en_attente'
+                      }">
+                  <i class="bi me-1" 
+                     [ngClass]="{
+                       'bi-check-circle': suggestion.status === 'acceptée',
+                       'bi-x-circle': suggestion.status === 'refusée',
+                       'bi-clock': suggestion.status === 'en_attente'
+                     }"></i>
+                  {{ suggestion.status | titlecase }}
+                </span>
+              </div>
+            </div>
+            <div class="col-md-4 text-md-end mt-3 mt-md-0">
+              <div class="d-inline-block bg-white text-dark rounded-3 p-3">
+                <div class="fs-1 fw-bold">{{ suggestion.nbLikes }}</div>
+                <div class="small text-muted">
+                  <i class="bi bi-hand-thumbs-up-fill text-primary"></i>
+                  Likes
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Corps de la carte -->
+        <div class="card-body p-5">
+          <!-- Description -->
+          <div class="mb-5">
+            <h4 class="text-primary mb-3">
+              <i class="bi bi-chat-square-text me-2"></i>
+              Description
+            </h4>
+            <div class="bg-light p-4 rounded-3">
+              <p class="fs-5 mb-0">{{ suggestion.description }}</p>
+            </div>
+          </div>
+
+          <!-- Informations détaillées -->
+          <div class="row g-4 mb-5">
+            <div class="col-md-6">
+              <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center">
+                  <i class="bi bi-calendar-check display-4 text-primary mb-3"></i>
+                  <h5 class="card-title">Date de création</h5>
+                  <p class="card-text fs-4 fw-bold text-dark">
+                    {{ suggestion.date | date:'dd MMMM yyyy' }}
+                  </p>
+                  <small class="text-muted">
+                    {{ suggestion.date | date:'HH:mm' }}
+                  </small>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-md-6">
+              <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center">
+                  <i class="bi bi-grid-3x3-gap display-4 text-success mb-3"></i>
+                  <h5 class="card-title">Catégorie</h5>
+                  <p class="card-text fs-4 fw-bold text-dark">
+                    {{ suggestion.category }}
+                  </p>
+                  <small class="text-muted">Type de suggestion</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Statut détaillé -->
+          <div class="alert" 
+               [ngClass]="{
+                 'alert-success': suggestion.status === 'acceptée',
+                 'alert-danger': suggestion.status === 'refusée',
+                 'alert-warning': suggestion.status === 'en_attente'
+               }">
+            <div class="d-flex align-items-center">
+              <i class="bi display-6 me-3" 
+                 [ngClass]="{
+                   'bi-check-circle-fill': suggestion.status === 'acceptée',
+                   'bi-x-circle-fill': suggestion.status === 'refusée',
+                   'bi-hourglass-split': suggestion.status === 'en_attente'
+                 }"></i>
+              <div>
+                <h5 class="alert-heading mb-1">
+                  Statut: {{ suggestion.status | titlecase }}
+                </h5>
+                <p class="mb-0">
+                  <span *ngIf="suggestion.status === 'acceptée'">
+                    Cette suggestion a été acceptée et sera mise en œuvre.
+                  </span>
+                  <span *ngIf="suggestion.status === 'refusée'">
+                    Cette suggestion n'a pas été retenue pour le moment.
+                  </span>
+                  <span *ngIf="suggestion.status === 'en_attente'">
+                    Cette suggestion est en cours d'évaluation par l'équipe.
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pied de carte avec actions -->
+        <div class="card-footer bg-light py-4">
+          <div class="row">
+            <div class="col-md-6 mb-3 mb-md-0">
+              <button class="btn btn-primary w-100 py-3" (click)="likeSuggestion()">
+                <i class="bi bi-hand-thumbs-up me-2"></i>
+                Like cette suggestion
+              </button>
+            </div>
+            <div class="col-md-6">
+              <button class="btn btn-outline-success w-100 py-3" (click)="addToFavorites()">
+                <i class="bi bi-star me-2"></i>
+                Ajouter aux favoris
+              </button>
+            </div>
+          </div>
+          
+          <div class="text-center mt-4">
+            <button class="btn btn-outline-secondary" (click)="goBack()">
+              <i class="bi bi-arrow-left me-2"></i>
+              Retour à la liste des suggestions
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Template de chargement -->
+<ng-template #loading>
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6 text-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+          <span class="visually-hidden">Chargement...</span>
+        </div>
+        <h3 class="mt-4">Chargement des détails...</h3>
+        <p class="text-muted">Veuillez patienter pendant que nous récupérons les informations.</p>
+      </div>
+    </div>
+  </div>
+</ng-template>
