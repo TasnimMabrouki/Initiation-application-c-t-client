@@ -6,15 +6,6 @@
 
 Application web moderne de gestion de suggestions développée avec Angular pour le cours d'Initiation aux Applications Client.
 
-## 📋 Table des Matières
-- [Fonctionnalités](#-fonctionnalités)
-- [Structure du Projet](#-structure-du-projet)
-- [Installation](#-installation)
-- [Workshops Complets](#-workshops-complets)
-- [Routes](#-routes)
-- [Captures d'écran](#-captures-décran)
-- [Auteur](#-auteur)
-
 ## ✨ Fonctionnalités
 
 ### 🎯 Workshop 1 - Bases d'Angular
@@ -55,3 +46,4 @@ Application web moderne de gestion de suggestions développée avec Angular pour
   - `Router` pour la navigation programmatique
 
 ## 📁 Structure du Projet
+
