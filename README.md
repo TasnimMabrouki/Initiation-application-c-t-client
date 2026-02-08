@@ -45,5 +45,4 @@ Application web moderne de gestion de suggestions développée avec Angular pour
   - `ActivatedRoute` pour les paramètres
   - `Router` pour la navigation programmatique
 
-## 📁 Structure du Projet
 
