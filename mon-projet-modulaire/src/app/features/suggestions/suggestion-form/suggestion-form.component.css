@@ -1,0 +1,16 @@
+.container {
+  max-width: 600px;
+}
+
+.invalid-feedback {
+  display: block;
+}
+
+.form-text {
+  color: #6c757d;
+  font-size: 0.875em;
+}
+
+.bg-light {
+  background-color: #e9ecef;
+}

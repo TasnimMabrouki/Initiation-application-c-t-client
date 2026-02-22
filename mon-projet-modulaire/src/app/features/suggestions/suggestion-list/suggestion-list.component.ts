@@ -1,13 +1,20 @@
 import { Component } from '@angular/core';
 import { Suggestion } from '../../../models/suggestion';
-
+import { Router } from '@angular/router';
+import { RouterModule } from '@angular/router'; 
 @Component({
   selector: 'app-suggestion-list',
   templateUrl: './suggestion-list.component.html',
   styleUrls: ['./suggestion-list.component.css'],
   standalone: false
 })
+
 export class SuggestionListComponent {
+  constructor(private router: Router) {}
+
+  ajouterSuggestion() {
+    this.router.navigate(['/suggestions/form']);
+  }
   // Liste statique des suggestions
   suggestions: Suggestion[] = [
     {
@@ -95,4 +102,5 @@ export class SuggestionListComponent {
   showButtons(suggestion: Suggestion): boolean {
     return suggestion.status !== 'refusée';
   }
+  
 }
