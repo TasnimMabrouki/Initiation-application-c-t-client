@@ -1,0 +1,110 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+          <h4 class="mb-0">
+            {{ isEditMode ? 'Modifier la suggestion' : 'Ajouter une nouvelle suggestion' }}
+          </h4>
+        </div>
+        
+        <div class="card-body">
+          <form [formGroup]="suggestionForm" (ngSubmit)="onSubmit()">
+            <!-- Titre -->
+            <div class="mb-3">
+              <label for="title" class="form-label">Titre de la suggestion *</label>
+              <input 
+                type="text" 
+                class="form-control" 
+                id="title"
+                formControlName="title"
+                [class.is-invalid]="title?.invalid && title?.touched"
+                placeholder="Entrez le titre de votre suggestion"
+              >
+              <div *ngIf="title?.invalid && title?.touched" class="invalid-feedback">
+                <span *ngIf="title?.errors?.['required']">Le titre est requis</span>
+                <span *ngIf="title?.errors?.['minlength']">
+                  Le titre doit contenir au moins 5 caractères
+                </span>
+              </div>
+              <small class="text-muted">
+                {{ title?.value?.length || 0 }} / 5 caractères minimum
+              </small>
+            </div>
+
+            <!-- Description -->
+            <div class="mb-3">
+              <label for="description" class="form-label">Description détaillée *</label>
+              <textarea 
+                class="form-control" 
+                id="description"
+                rows="5"
+                formControlName="description"
+                [class.is-invalid]="description?.invalid && description?.touched"
+                placeholder="Décrivez votre suggestion en détail (minimum 30 caractères)"
+              ></textarea>
+              <div *ngIf="description?.invalid && description?.touched" class="invalid-feedback">
+                <span *ngIf="description?.errors?.['required']">La description est requise</span>
+                <span *ngIf="description?.errors?.['minlength']">
+                  La description doit contenir au moins 30 caractères
+                </span>
+              </div>
+              <small class="text-muted">
+                {{ description?.value?.length || 0 }} / 30 caractères minimum
+              </small>
+            </div>
+
+            <!-- Catégorie -->
+            <div class="mb-3">
+              <label for="category" class="form-label">Catégorie *</label>
+              <select 
+                class="form-select" 
+                id="category"
+                formControlName="category"
+                [class.is-invalid]="category?.invalid && category?.touched"
+              >
+                <option value="">-- Sélectionnez une catégorie --</option>
+                <option *ngFor="let cat of categories" [value]="cat">
+                  {{ cat }}
+                </option>
+              </select>
+              <div *ngIf="category?.invalid && category?.touched" class="invalid-feedback">
+                Veuillez sélectionner une catégorie
+              </div>
+            </div>
+
+            <!-- Status (visible seulement en mode édition) -->
+            <div class="mb-3" *ngIf="isEditMode">
+              <label for="status" class="form-label">Statut</label>
+              <select class="form-select" id="status" formControlName="status">
+                <option value="en attente">En attente</option>
+                <option value="approuvée">Approuvée</option>
+                <option value="refusée">Refusée</option>
+              </select>
+            </div>
+
+            <!-- Boutons d'action -->
+            <div class="d-flex gap-2 mt-4">
+              <button 
+                type="submit" 
+                class="btn btn-primary" 
+                [disabled]="suggestionForm.invalid"
+              >
+                <i class="fas fa-save"></i>
+                {{ isEditMode ? 'Mettre à jour' : 'Ajouter' }}
+              </button>
+              <button 
+                type="button" 
+                class="btn btn-secondary" 
+                routerLink="/suggestions"
+              >
+                <i class="fas fa-times"></i>
+                Annuler
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,46 +1,59 @@
-# 🚀 Système de Suggestions - Projet Angular
+# MonProjetModulaire
 
-![Angular](https://img.shields.io/badge/Angular-17+-DD0031?style=for-the-badge&logo=angular&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.4.
 
-Application web moderne de gestion de suggestions développée avec Angular pour le cours d'Initiation aux Applications Client.
+## Development server
 
-## ✨ Fonctionnalités
+To start a local development server, run:
 
-### 🎯 Workshop 1 - Bases d'Angular
-- **Configuration de l'environnement** Angular CLI
-- **Création de composants** : Header, Footer
-- **Initialisation** d'un projet Angular moderne
+```bash
+ng serve
+```
 
-### 🔧 Workshop 2 - Manipulation des Composants
-- **Composants Angular** : Header, Footer, ListSuggestion
-- **Data Binding** complet :
-  - Interpolation `{{ }}`
-  - Property binding `[ ]`
-  - Event binding `( )`
-  - Two-way binding `[(ngModel)]`
-- **Directives** :
-  - `*ngFor` pour les listes
-  - `*ngIf` pour l'affichage conditionnel
-  - `[ngClass]` pour les classes dynamiques
-- **Interface TypeScript** : Modèle `Suggestion`
-- **Fonctionnalités interactives** :
-  - Filtrage des suggestions par catégorie
-  - Recherche en temps réel
-  - Boutons Like et Favoris
-  - Gestion des états (acceptée/refusée/en attente)
+Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-### 🗺️ Workshop 3 - Routage et Lazy Loading
-- **Routage Angular** avec `RouterModule`
-- **Lazy Loading** des modules :
-  - Module `Suggestions` chargé uniquement sur `/suggestions`
-  - Module `Users` chargé uniquement sur `/users`
-- **Navigation SPA** :
-  - Page d'accueil (`/home`)
-  - Liste des suggestions (`/suggestions`)
-  - Détails d'une suggestion (`/suggestions/:id`)
-  - Page 404 (`/**`)
-- **Services de routage** :
-  - `ActivatedRoute` pour les paramètres
-  - `Router` pour la navigation programmatique
+## Code scaffolding
+
+Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+
+```bash
+ng generate component component-name
+```
+
+For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+
+```bash
+ng generate --help
+```
+
+## Building
+
+To build the project run:
+
+```bash
+ng build
+```
+
+This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+
+## Running unit tests
+
+To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+
+```bash
+ng test
+```
+
+## Running end-to-end tests
+
+For end-to-end (e2e) testing, run:
+
+```bash
+ng e2e
+```
+
+Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+
+## Additional Resources
+
+For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

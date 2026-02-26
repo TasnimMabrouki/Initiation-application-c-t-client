@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component , OnInit} from '@angular/core';
 import { Suggestion } from '../../models/suggestion';
+import { SuggestionService } from '../Services/suggestion'; 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-suggestion',
@@ -7,83 +9,52 @@ import { Suggestion } from '../../models/suggestion';
   templateUrl: './list-suggestion.component.html',
   styleUrls: ['./list-suggestion.component.css']
 })
-export class ListSuggestionComponent {
-  // Liste statique des suggestions
-  suggestions: Suggestion[] = [
-    {
-      id: 1,
-      title: 'Organiser une journée team building',
-      description: 'Suggestion pour organiser une journée de team building pour renforcer les liens entre les membres de l\'équipe.',
-      category: 'Événements',
-      date: new Date('2025-01-20'),
-      status: 'acceptée',
-      nbLikes: 10
-    },
-    {
-      id: 2,
-      title: 'Améliorer le système de réservation',
-      description: 'Proposition pour améliorer la gestion des réservations en ligne avec un système de confirmation automatique.',
-      category: 'Technologie',
-      date: new Date('2025-01-15'),
-      status: 'refusée',
-      nbLikes: 0
-    },
-    {
-      id: 3,
-      title: 'Créer un système de récompenses',
-      description: 'Mise en place d\'un programme de récompenses pour motiver les employés et reconnaître leurs efforts.',
-      category: 'Ressources Humaines',
-      date: new Date('2025-01-25'),
-      status: 'refusée',
-      nbLikes: 0
-    },
-    {
-      id: 4,
-      title: 'Moderniser l\'interface utilisateur',
-      description: 'Refonte complète de l\'interface utilisateur pour une meilleure expérience utilisateur.',
-      category: 'Technologie',
-      date: new Date('2025-01-30'),
-      status: 'en_attente',
-      nbLikes: 0
-    }
-  ];
+export class ListSuggestionComponent implements OnInit {
+  suggestions: Suggestion[] = [];
 
-  filteredSuggestions: Suggestion[] = [...this.suggestions];
-  favorites: Suggestion[] = [];
-  searchTerm = '';
-  selectedCategory = 'all';
+  constructor(
+    private suggestionService: SuggestionService,
+    private router: Router
+  ) { }
 
-  // Méthode pour liker une suggestion
-  likeSuggestion(suggestion: Suggestion): void {
-    suggestion.nbLikes++;
+  ngOnInit(): void {
+    this.loadSuggestions();
   }
 
-  // Méthode pour ajouter aux favoris
-  addToFavorites(suggestion: Suggestion): void {
-    if (!this.favorites.find(fav => fav.id === suggestion.id)) {
-      this.favorites.push(suggestion);
-      alert('Suggestion ajoutée aux favoris !');
-    }
-  }
-
-  // Méthode pour filtrer les suggestions
-  filterSuggestions(): void {
-    this.filteredSuggestions = this.suggestions.filter(suggestion => {
-      const matchesSearch = suggestion.title.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-                           suggestion.description.toLowerCase().includes(this.searchTerm.toLowerCase());
-      const matchesCategory = this.selectedCategory === 'all' || 
-                             suggestion.category === this.selectedCategory;
-      return matchesSearch && matchesCategory;
+  loadSuggestions(): void {
+    this.suggestionService.getSuggestionsList().subscribe({
+      next: (data) => {
+        this.suggestions = data;
+      },
+      error: (err) => {
+        console.error('Erreur lors du chargement des suggestions', err);
+      }
     });
   }
 
-  // Méthode pour récupérer les catégories uniques
-  get categories(): string[] {
-    return [...new Set(this.suggestions.map(s => s.category))];
+  deleteSuggestion(id: number): void {
+    if (confirm('Êtes-vous sûr de vouloir supprimer cette suggestion ?')) {
+      this.suggestionService.deleteSuggestion(id).subscribe({
+        next: () => {
+          this.loadSuggestions(); // Recharger la liste
+          this.router.navigate(['/suggestions']);
+        },
+        error: (err) => {
+          console.error('Erreur lors de la suppression', err);
+        }
+      });
+    }
   }
 
-  // Méthode pour vérifier si une suggestion peut avoir des boutons
-  showButtons(suggestion: Suggestion): boolean {
-    return suggestion.status !== 'refusée';
+  likeSuggestion(suggestion: Suggestion): void {
+    const newLikes = (suggestion.nbLikes || 0) + 1;
+    this.suggestionService.updateLikes(suggestion.id, newLikes).subscribe({
+      next: (updated) => {
+        suggestion.nbLikes = updated.nbLikes;
+      },
+      error: (err) => {
+        console.error('Erreur lors du like', err);
+      }
+    });
   }
 }
